@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengumuman Kelulusan MI Muhammadiyah Kejajar</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .login-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .login-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .login-form h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+        
+        .form-group input:focus {
+            border-color: var(--secondary);
+            outline: none;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .result-container {
+            display: none;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .success-icon {
+            font-size: 80px;
+            color: #2ecc71;
+            margin-bottom: 20px;
+            animation: bounce 1s infinite alternate;
+        }
+        
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
+        }
+        
+        .result-title {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .result-subtitle {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .student-info {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        
+        .student-info h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 10px;
+        }
+        
+        .info-row {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        
+        .info-label {
+            font-weight: 500;
+            width: 150px;
+            color: var(--dark);
+        }
+        
+        .info-value {
+            flex: 1;
+        }
+        
+        .congrats-message {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        
+        .signature {
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .signature p {
+            margin-bottom: 5px;
+        }
+        
+        .signature-name {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-top: 30px;
+        }
+        
+        .error-message {
+            color: var(--accent);
+            margin-top: 10px;
+            font-size: 0.9rem;
+            display: none;
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            border-radius: 50%;
+            animation: confetti-fall 5s linear infinite;
+            z-index: 1000;
+            display: none;
+        }
+        
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .login-container, .result-container {
+                padding: 30px 20px;
+            }
+            
+            .info-row {
+                flex-direction: column;
+            }
+            
+            .info-label {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MI MUHAMMADIYAH KEJAJAR</h1>
+            <p>Jl. Kauman No. 02 Kejajar - Tahun Ajaran 2024/2025</p>
+        </header>
+        
+        <div class="login-container" id="loginContainer">
+            <div class="login-form">
+                <h2>Pengumuman Kelulusan</h2>
+                <p>Masukkan NISN Anda untuk melihat hasil kelulusan</p>
+                
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="nisn">Nomor Induk Siswa Nasional (NISN)</label>
+                        <input type="text" id="nisn" name="nisn" placeholder="Masukkan NISN Anda" required>
+                        <div class="error-message" id="errorMessage">NISN tidak valid. Silakan coba lagi.</div>
+                    </div>
+                    
+                    <button type="submit" class="btn">Lihat Hasil</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="result-container" id="resultContainer">
+            <div class="success-icon">🎓</div>
+            <h2 class="result-title">SELAMAT!</h2>
+            <h3 class="result-subtitle">ANDA DINYATAKAN LULUS</h3>
+            
+            <div class="student-info" id="studentInfo">
+                <h3>Informasi Peserta Didik</h3>
+                <div class="info-row">
+                    <div class="info-label">Nama Lengkap</div>
+                    <div class="info-value" id="studentName">-</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">NISN</div>
+                    <div class="info-value" id="studentNisn">-</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Nomor Peserta</div>
+                    <div class="info-value" id="studentNumber">-</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Tempat, Tanggal Lahir</div>
+                    <div class="info-value" id="studentBirth">-</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Kelas</div>
+                    <div class="info-value" id="studentClass">-</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Nama Ayah</div>
+                    <div class="info-value" id="studentFather">-</div>
+                </div>
+            </div>
+            
+            <div class="congrats-message">
+                <p>Dengan ini kami umumkan bahwa saudara/i dinyatakan <strong>LULUS</strong> dari MI Muhammadiyah Kejajar pada tanggal <strong>2 Juni 2025</strong>.</p>
+                <p>Selamat atas kelulusan Anda! Teruslah belajar dan raih cita-cita setinggi mungkin.</p>
+            </div>
+            
+            <div class="signature">
+                <p>Wonosobo, 2 Juni 2025</p>
+                <p>Kepala MI Muhammadiyah Kejajar</p>
+                <div class="signature-name">( _________________________ )</div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2025 MI Muhammadiyah Kejajar - Pengumuman Kelulusan Kelas VI</p>
+            <p>Jl. Kauman No. 02 Kejajar</p>
+        </footer>
+    </div>
+    
+    <div id="confettiContainer"></div>
+    
+    <script>
+        // Data siswa
+        const students = [
+            {no: "1", nomor_peserta: "25-11-07-1-0085-0001", nisn: "3113667418", nama: "ACHMAD KHOIRUL AZAM", tempat_lahir: "WONOSOBO", tgl_lahir: "04-08-2011", kelas: "6 A", nama_ayah: "WAHYU SUWINDI"},
+            {no: "2", nomor_peserta: "25-11-07-1-0085-0002", nisn: "127609696", nama: "AHMAD AHZA ARGANI", tempat_lahir: "WONOSOBO", tgl_lahir: "29-04-2012", kelas: "6 A", nama_ayah: "ARFIYANTO"},
+            {no: "3", nomor_peserta: "25-11-07-1-0085-0003", nisn: "127431050", nama: "ALTHAF WALADI AL FARUQ", tempat_lahir: "WONOSOBO", tgl_lahir: "21-05-2012", kelas: "6 A", nama_ayah: "SHOHIBUROHMAN"},
+            {no: "4", nomor_peserta: "25-11-07-1-0085-0004", nisn: "116441202", nama: "ANISA SALSA FEBRIA", tempat_lahir: "WONOSOBO", tgl_lahir: "22-02-2011", kelas: "6 A", nama_ayah: "SUWARDI ABDULLAH"},
+            {no: "5", nomor_peserta: "25-11-07-1-0085-0005", nisn: "3127668799", nama: "ANITSA KHURIL AINI", tempat_lahir: "TEMANGGUNG", tgl_lahir: "10-11-2012", kelas: "6 A", nama_ayah: "SOBIRAN"},
+            {no: "6", nomor_peserta: "25-11-07-1-0085-0006", nisn: "127196531", nama: "ARETHA AYUNINDYA ARGANI", tempat_lahir: "WONOSOBO", tgl_lahir: "19-05-2012", kelas: "6 A", nama_ayah: "AHMAD LUTFIYANTO"},
+            {no: "7", nomor_peserta: "25-11-07-1-0085-0007", nisn: "3134570019", nama: "ARYAN ANDRIATA ALFAO", tempat_lahir: "WONOSOBO", tgl_lahir: "06-05-2013", kelas: "6 A", nama_ayah: "ANDRIYADI"},
+            {no: "8", nomor_peserta: "25-11-07-1-0085-0008", nisn: "126737094", nama: "ASYRAFFAZA AHNAF MAZAYA", tempat_lahir: "WONOSOBO", tgl_lahir: "29-10-2012", kelas: "6 A", nama_ayah: "AKHMAT SUBIYAKTO"},
+            {no: "9", nomor_peserta: "25-11-07-1-0085-0009", nisn: "125234676", nama: "ATA AMRULLAH ALGHIFARI", tempat_lahir: "WONOSOBO", tgl_lahir: "20-07-2012", kelas: "6 A", nama_ayah: "SOBIRON"},
+            {no: "10", nomor_peserta: "25-11-07-1-0085-0010", nisn: "125774074", nama: "AYUNDA NAURA AUNI", tempat_lahir: "WONOSOBO", tgl_lahir: "18-08-2012", kelas: "6 A", nama_ayah: "TUHIDI"},
+            {no: "11", nomor_peserta: "25-11-07-1-0085-0011", nisn: "126404112", nama: "AZHARA HUWAIDA KAYYASAH RIZQI", tempat_lahir: "WONOSOBO", tgl_lahir: "23-11-2012", kelas: "6 A", nama_ayah: "WAHYU"},
+            {no: "12", nomor_peserta: "25-11-07-1-0085-0012", nisn: "3126462070", nama: "AZKA ADINATA ZAGIF", tempat_lahir: "WONOSOBO", tgl_lahir: "20-06-2012", kelas: "6 A", nama_ayah: "DIDIK SUBAGYO"},
+            {no: "13", nomor_peserta: "25-11-07-1-0085-0013", nisn: "3127927643", nama: "BATTAR IKMAL AL FIKRI", tempat_lahir: "WONOSOBO", tgl_lahir: "06-09-2012", kelas: "6 A", nama_ayah: "SUGIANTO"},
+            {no: "14", nomor_peserta: "25-11-07-1-0085-0014", nisn: "123582638", nama: "CHESTA AR RABBANI HIRANYA HAYU", tempat_lahir: "WONOSOBO", tgl_lahir: "06-03-2012", kelas: "6 A", nama_ayah: "DWI HIDAYAT"},
+            {no: "15", nomor_peserta: "25-11-07-1-0085-0015", nisn: "128439071", nama: "DENIS SYAFI'I PRASETYA", tempat_lahir: "WONOSOBO", tgl_lahir: "16-05-2012", kelas: "6 A", nama_ayah: "TRISONO"},
+            {no: "16", nomor_peserta: "25-11-07-1-0085-0016", nisn: "138444110", nama: "ENGGAR PRASMANA", tempat_lahir: "WONOSOBO", tgl_lahir: "04-01-2013", kelas: "6 A", nama_ayah: "ARIYANTO"},
+            {no: "17", nomor_peserta: "25-11-07-1-0085-0017", nisn: "124032453", nama: "EXCEEL AA YODA PRATAMA", tempat_lahir: "WONOSOBO", tgl_lahir: "29-12-2012", kelas: "6 A", nama_ayah: "ANWAR"},
+            {no: "18", nomor_peserta: "25-11-07-1-0085-0018", nisn: "121609786", nama: "FADYAS SYAHIR RIZALFA", tempat_lahir: "WONOSOBO", tgl_lahir: "19-09-2012", kelas: "6 A", nama_ayah: "ROJIMAN"},
+            {no: "19", nomor_peserta: "25-11-07-1-0085-0019", nisn: "3129426445", nama: "FARAH SANIA", tempat_lahir: "WONOSOBO", tgl_lahir: "16-11-2012", kelas: "6 A", nama_ayah: "AHMAD FAIZIN"},
+            {no: "20", nomor_peserta: "25-11-07-1-0085-0020", nisn: "3122744678", nama: "FARASYA KHOIRU NAZA", tempat_lahir: "WONOSOBO", tgl_lahir: "28-05-2012", kelas: "6 A", nama_ayah: "MEDI AL ACHMAD RIFA'I"},
+            {no: "21", nomor_peserta: "25-11-07-1-0085-0021", nisn: "123306452", nama: "FARDIAN HARIS PRAMUDYA", tempat_lahir: "WONOSOBO", tgl_lahir: "21-04-2012", kelas: "6 A", nama_ayah: "UUT TRI PRATOWO"},
+            {no: "22", nomor_peserta: "25-11-07-1-0085-0022", nisn: "122949234", nama: "FARREL CALIXTO ABIQA ATALAZA", tempat_lahir: "WONOSOBO", tgl_lahir: "08-03-2012", kelas: "6 A", nama_ayah: "HANIF FAHIM"},
+            {no: "23", nomor_peserta: "25-11-07-1-0085-0023", nisn: "125055881", nama: "FARUQ HAMZAH NUR'AIN", tempat_lahir: "WONOSOBO", tgl_lahir: "20-04-2012", kelas: "6 A", nama_ayah: "HAFSUN RIYADI"},
+            {no: "24", nomor_peserta: "25-11-07-1-0085-0024", nisn: "133088224", nama: "FARUQ JAKA LATHIF", tempat_lahir: "WONOSOBO", tgl_lahir: "08-01-2013", kelas: "6 A", nama_ayah: "HERI PRAJOKO"},
+            {no: "25", nomor_peserta: "25-11-07-1-0085-0025", nisn: "3126757580", nama: "FATHIR ASEGAF SYAH", tempat_lahir: "WONOSOBO", tgl_lahir: "19-08-2012", kelas: "6 A", nama_ayah: "UNTUNG WALUYO"},
+            {no: "26", nomor_peserta: "25-11-07-1-0085-0026", nisn: "3128159699", nama: "FATIR ASYA PRATAMA", tempat_lahir: "WONOSOBO", tgl_lahir: "08-10-2012", kelas: "6 A", nama_ayah: "IBNU AFAN"},
+            {no: "27", nomor_peserta: "25-11-07-1-0085-0027", nisn: "3126676744", nama: "FAZIDATUS SALMA", tempat_lahir: "WONOSOBO", tgl_lahir: "28-10-2012", kelas: "6 A", nama_ayah: "MADJUNAEDI"},
+            {no: "28", nomor_peserta: "25-11-07-1-0085-0028", nisn: "126737062", nama: "ISABELLA PUTRI ZASKIA", tempat_lahir: "WONOSOBO", tgl_lahir: "20-03-2012", kelas: "6 A", nama_ayah: "RUSDIYANTO"},
+            {no: "29", nomor_peserta: "25-11-07-1-0085-0029", nisn: "131620199", nama: "ISY KARIMAN AU MUT SYAHIDAN", tempat_lahir: "WONOSOBO", tgl_lahir: "24-03-2013", kelas: "6 A", nama_ayah: "INDRAWAN"},
+            {no: "30", nomor_peserta: "25-11-07-1-0085-0030", nisn: "118638741", nama: "LULU' KHUZAIMAH ASSYAFRIDA", tempat_lahir: "WONOSOBO", tgl_lahir: "26-01-2011", kelas: "6 A", nama_ayah: "PAIJAN"},
+            {no: "31", nomor_peserta: "25-11-07-1-0085-0031", nisn: "3127833829", nama: "MUHAMMAD HANAN HIBATULLAH", tempat_lahir: "WONOSOBO", tgl_lahir: "02-04-2012", kelas: "6 A", nama_ayah: "YATIMAN"},
+            {no: "32", nomor_peserta: "25-11-07-1-0085-0032", nisn: "128704839", nama: "RACHIEL ATTIQIYA", tempat_lahir: "WONOSOBO", tgl_lahir: "01-05-2012", kelas: "6 A", nama_ayah: "ZULBANI"},
+            {no: "33", nomor_peserta: "25-11-07-1-0085-0033", nisn: "3128949639", nama: "AFDIKA AFANI ARSHAFIN", tempat_lahir: "WONOSOBO", tgl_lahir: "12-09-2012", kelas: "6 B", nama_ayah: "SOLEHAN"},
+            {no: "34", nomor_peserta: "25-11-07-1-0085-0034", nisn: "136438743", nama: "CHAIDAR RAFKYFADDY JUNIOR", tempat_lahir: "KENDAL", tgl_lahir: "19-06-2013", kelas: "6 B", nama_ayah: "BUDIONO"},
+            {no: "35", nomor_peserta: "25-11-07-1-0085-0035", nisn: "3121565897", nama: "FAZIN IBRAHIM", tempat_lahir: "WONOSOBO", tgl_lahir: "23-10-2012", kelas: "6 B", nama_ayah: "RIFAI"},
+            {no: "36", nomor_peserta: "25-11-07-1-0085-0036", nisn: "129481554", nama: "ISKARIMA SYAHIDAH RAJAD", tempat_lahir: "WONOSOBO", tgl_lahir: "29-03-2012", kelas: "6 B", nama_ayah: "ABDUL RAJAD"},
+            {no: "37", nomor_peserta: "25-11-07-1-0085-0037", nisn: "3126028350", nama: "KALILA RIFDA KARIMA", tempat_lahir: "WONOSOBO", tgl_lahir: "19-08-2012", kelas: "6 B", nama_ayah: "SAIFUDIN"},
+            {no: "38", nomor_peserta: "25-11-07-1-0085-0038", nisn: "123872773", nama: "KAMILA ZAYYANA", tempat_lahir: "WONOSOBO", tgl_lahir: "02-12-2012", kelas: "6 B", nama_ayah: "MISYONO"},
+            {no: "39", nomor_peserta: "25-11-07-1-0085-0039", nisn: "3122568912", nama: "KHANSA' TSABITAH", tempat_lahir: "WONOSOBO", tgl_lahir: "01-10-2012", kelas: "6 B", nama_ayah: "ANWAR MAJID"},
+            {no: "40", nomor_peserta: "25-11-07-1-0085-0040", nisn: "3123202016", nama: "LULU' LUTFIANA", tempat_lahir: "WONOSOBO", tgl_lahir: "25-10-2012", kelas: "6 B", nama_ayah: "DWI YANTO"},
+            {no: "41", nomor_peserta: "25-11-07-1-0085-0041", nisn: "138607471", nama: "MICHAELLA RACHEL EFENDI", tempat_lahir: "WONOSOBO", tgl_lahir: "14-01-2013", kelas: "6 B", nama_ayah: "SUBHAN EFENDI"},
+            {no: "42", nomor_peserta: "25-11-07-1-0085-0042", nisn: "3125493666", nama: "MIRA", tempat_lahir: "WONOSOBO", tgl_lahir: "22-04-2012", kelas: "6 B", nama_ayah: "SLAMET"},
+            {no: "43", nomor_peserta: "25-11-07-1-0085-0043", nisn: "126450931", nama: "MUHAMMAD ARYA SAPUTRA", tempat_lahir: "WONOSOBO", tgl_lahir: "27-11-2012", kelas: "6 B", nama_ayah: "MUARIFIN"},
+            {no: "44", nomor_peserta: "25-11-07-1-0085-0044", nisn: "128391518", nama: "MUHAMMAD ASHIL SYADY ALTHAF", tempat_lahir: "WONOSOBO", tgl_lahir: "12-12-2012", kelas: "6 B", nama_ayah: "AGUSTONO"},
+            {no: "45", nomor_peserta: "25-11-07-1-0085-0045", nisn: "129371662", nama: "MUHAMMAD BYAN SYAILENDRA", tempat_lahir: "WONOSOBO", tgl_lahir: "16-07-2012", kelas: "6 B", nama_ayah: "SADAM PURNOMO"},
+            {no: "46", nomor_peserta: "25-11-07-1-0085-0046", nisn: "128746643", nama: "MUHAMMAD KAFKA AL HAFIZI", tempat_lahir: "WONOSOBO", tgl_lahir: "06-04-2012", kelas: "6 B", nama_ayah: "AHMAD SAFRUDIN"},
+            {no: "47", nomor_peserta: "25-11-07-1-0085-0047", nisn: "129606307", nama: "MUHAMMAD RIZQI ARYA PUTRA", tempat_lahir: "WONOSOBO", tgl_lahir: "21-02-2012", kelas: "6 B", nama_ayah: "NUR HUDA"},
+            {no: "48", nomor_peserta: "25-11-07-1-0085-0048", nisn: "134855738", nama: "MUHAMMAD ZIMAM WAFI", tempat_lahir: "WONOSOBO", tgl_lahir: "24-03-2013", kelas: "6 B", nama_ayah: "SUBARKAH"},
+            {no: "49", nomor_peserta: "25-11-07-1-0085-0049", nisn: "3122804269", nama: "NADIN AYUDYA ELVARETTA", tempat_lahir: "WONOSOBO", tgl_lahir: "18-08-2012", kelas: "6 B", nama_ayah: "SANTOSO"},
+            {no: "50", nomor_peserta: "25-11-07-1-0085-0050", nisn: "121984081", nama: "NAUFAL ZADID AL ZAIN", tempat_lahir: "WONOSOBO", tgl_lahir: "22-03-2012", kelas: "6 B", nama_ayah: "ZAENAL"},
+            {no: "51", nomor_peserta: "25-11-07-1-0085-0051", nisn: "126666790", nama: "NAURA ZAINA FAJRIN", tempat_lahir: "WONOSOBO", tgl_lahir: "29-07-2012", kelas: "6 B", nama_ayah: "MAHROJA"},
+            {no: "52", nomor_peserta: "25-11-07-1-0085-0052", nisn: "122035078", nama: "NURIL ALFISAH", tempat_lahir: "WONOSOBO", tgl_lahir: "30-10-2012", kelas: "6 B", nama_ayah: "MUSYAFAK"},
+            {no: "53", nomor_peserta: "25-11-07-1-0085-0053", nisn: "121340472", nama: "RENALDI", tempat_lahir: "WONOSOBO", tgl_lahir: "21-03-2012", kelas: "6 B", nama_ayah: "WIDIYANTO"},
+            {no: "54", nomor_peserta: "25-11-07-1-0085-0054", nisn: "124782707", nama: "REVALDO", tempat_lahir: "WONOSOBO", tgl_lahir: "21-03-2012", kelas: "6 B", nama_ayah: "WIDIYANTO"},
+            {no: "55", nomor_peserta: "25-11-07-1-0085-0055", nisn: "3120024905", nama: "REVALINA RAIKHANA ROSYIDA", tempat_lahir: "WONOSOBO", tgl_lahir: "12-12-2012", kelas: "6 B", nama_ayah: "MASRUCHIN"},
+            {no: "56", nomor_peserta: "25-11-07-1-0085-0056", nisn: "128599958", nama: "SHAWTA ABDI DZIKRULLAH", tempat_lahir: "WONOSOBO", tgl_lahir: "12-10-2012", kelas: "6 B", nama_ayah: "ABDI PRASETYO"},
+            {no: "57", nomor_peserta: "25-11-07-1-0085-0057", nisn: "3124518539", nama: "UMAR MA'RUF ABDILAH", tempat_lahir: "WONOSOBO", tgl_lahir: "22-08-2012", kelas: "6 B", nama_ayah: "MA'RUF SUWARDI"},
+            {no: "58", nomor_peserta: "25-11-07-1-0085-0058", nisn: "122012624", nama: "VANYA MARIANA LOVELY MAWAR MERAH", tempat_lahir: "WONOSOBO", tgl_lahir: "31-03-2012", kelas: "6 B", nama_ayah: "ISKANDAR ZULKARNAIN"},
+            {no: "59", nomor_peserta: "25-11-07-1-0085-0059", nisn: "3122980917", nama: "WARDAH KHOIROTUNNISA", tempat_lahir: "WONOSOBO", tgl_lahir: "17-02-2012", kelas: "6 B", nama_ayah: "MUHRONI"},
+            {no: "60", nomor_peserta: "25-11-07-1-0085-0060", nisn: "122725970", nama: "YUNDHENA AFZA SAKHI TSURAYYA", tempat_lahir: "WONOSOBO", tgl_lahir: "12-09-2012", kelas: "6 B", nama_ayah: "BANGIDUN"},
+            {no: "61", nomor_peserta: "25-11-07-1-0085-0061", nisn: "125905997", nama: "ZALYA KHANSA RAHAYU", tempat_lahir: "WONOSOBO", tgl_lahir: "02-07-2012", kelas: "6 B", nama_ayah: "SLAMET WIYONO"}
+        ];
+            // Fungsi untuk menangani form login
+            document.getElementById('loginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const nisn = document.getElementById('nisn').value.trim();
+                const errorMessage = document.getElementById('errorMessage');
+                
+                // Cari siswa berdasarkan NISN
+                const student = students.find(s => s.nisn === nisn);
+                
+                if (student) {
+                    // Sembunyikan pesan error jika ada
+                    errorMessage.style.display = 'none';
+                    
+                    // Isi data siswa
+                    document.getElementById('studentName').textContent = student.nama;
+                    document.getElementById('studentNisn').textContent = student.nisn;
+                    document.getElementById('studentNumber').textContent = student.nomor_peserta;
+                    document.getElementById('studentBirth').textContent = `${student.tempat_lahir}, ${formatDate(student.tgl_lahir)}`;
+                    document.getElementById('studentClass').textContent = student.kelas;
+                    document.getElementById('studentFather').textContent = student.nama_ayah;
+                    
+                    // Tampilkan hasil
+                    document.getElementById('loginContainer').style.display = 'none';
+                    document.getElementById('resultContainer').style.display = 'block';
+                    
+                    // Jalankan animasi konfeti
+                    createConfetti();
+                } else {
+                    // Tampilkan pesan error
+                    errorMessage.style.display = 'block';
+                }
+            });
+            
+            // Fungsi untuk memformat tanggal
+            function formatDate(dateString) {
+                const [day, month, year] = dateString.split('-');
+                const months = [
+                    'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+                    'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+                ];
+                return `${day} ${months[parseInt(month) - 1]} ${year}`;
+            }
+            
+            // Fungsi untuk membuat efek konfeti
+            function createConfetti() {
+                const colors = ['#f00', '#0f0', '#00f', '#ff0', '#f0f', '#0ff'];
+                const container = document.getElementById('confettiContainer');
+                
+                for (let i = 0; i < 100; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = `${Math.random() * 100}vw`;
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                    confetti.style.animationDelay = `${Math.random() * 2}s`;
+                    container.appendChild(confetti);
+                    
+                    // Tampilkan konfeti
+                    confetti.style.display = 'block';
+                    
+                    // Hapus konfeti setelah selesai animasi
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 5000);
+                }
+            }
+            
+            // Fungsi untuk kembali ke halaman login
+            function backToLogin() {
+                document.getElementById('loginContainer').style.display = 'block';
+                document.getElementById('resultContainer').style.display = 'none';
+                document.getElementById('nisn').value = '';
+                document.getElementById('nisn').focus();
+            }
+        </script>
+    </body>
+</html>
